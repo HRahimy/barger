@@ -1,21 +1,22 @@
 import {Injectable} from '@angular/core';
 import {
-  Router, Resolve,
+  Resolve,
   RouterStateSnapshot,
   ActivatedRouteSnapshot
 } from '@angular/router';
-import {Observable, of} from 'rxjs';
+import {Observable} from 'rxjs';
 import {HttpClient} from "@angular/common/http";
+import {ICostsResponse} from "../interfaces/costs-response.interface";
 
 @Injectable({
   providedIn: 'root'
 })
-export class CostsResolver implements Resolve<boolean> {
+export class CostsResolver implements Resolve<ICostsResponse> {
   constructor(private http: HttpClient) {
   }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ICostsResponse> {
     console.log('resolving costs...');
-    return of(true);
+    return this.http.get<ICostsResponse>('http://localhost:4200/assets/costs.json');
   }
 }
