@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DataResolver } from './data.resolver';
+import { CostsResolver } from './costs.resolver';
 
-describe('DataResolver', () => {
-  let resolver: DataResolver;
+describe('CostsResolver', () => {
+  let resolver: CostsResolver;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    resolver = TestBed.inject(DataResolver);
+    resolver = TestBed.inject(CostsResolver);
   });
 
   it('should be created', () => {

@@ -1,13 +1,17 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {CoreComponent} from "./components/core/core.component";
-import {DataResolver} from "./resolvers/data.resolver";
+import {CostsResolver} from "./resolvers/costs.resolver";
+import {ExchangeRatesResolver} from "./resolvers/exchange-rates.resolver";
 
 const routes: Routes = [
   {
     path: '',
     component: CoreComponent,
-    resolve: [DataResolver]
+    resolve: {
+      costs: CostsResolver,
+      exchangeRates: ExchangeRatesResolver,
+    }
   }
 ];
 
