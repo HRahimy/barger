@@ -1,0 +1,27 @@
+SGD -> USD = 0.7598199759292418
+SGD -> AED = 2.816829240594386
+
+We want to know exchange rates AED -> USD.
+_______________________________________________________
+
+Since we don't have any direct rates, we can 
+use the indirect relationship between AED -> SGD -> USD
+to work it out.
+
+First we need to know AED -> SGD:
+
+AED -> SGD = (1 / value of SGD -> AED) = 1 / 2.816829240594386 = 0.3550090951871075
+
+Then we must know USD -> SGD:
+
+USD -> SGD = (1 / value of SGD -> USD) = 1 / 0.7598199759292418 = 1.31610122355236
+
+We can now work out AED -> USD:
+
+AED -> USD = (value of AED -> SGD / value of USD -> SGD) =  0.3550090951871075 / 1.31610122355236 = 0.26974300215973
+
+Now that we've worked out AED -> USD, we can also solve for USD -> AED:
+
+USD -> AED = (1 / value AED -> USD) = 1 / 0.26974300215973 = 3.707232410084336
+
+I experimented with ratio calculations to come to this conclusion. See here for more: https://www.omnicalculator.com/math/ratio?c=GBP&v=options:0,ratio_numbers:1.000000000000000,e:1!!l,f:0.7598199759292!!l,enlarge:2,options2:0.000000000000000,i:1,g:2.816829240594386!!l
