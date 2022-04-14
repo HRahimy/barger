@@ -3,6 +3,6 @@
   <h4>{{label}}</h4>
   </span>
   <select class="my-select" (change)="selectCurrency($event)">
-    <option *ngFor="let option of options" [value]="option.currency" [selected]="currentValue.currency === option.currency">{{option.currency}} : {{option.exchangeRate}}</option>
+    <option *ngFor="let option of options" [value]="option" [selected]="currentValue === option">{{option}}</option>
   </select>
 </div>

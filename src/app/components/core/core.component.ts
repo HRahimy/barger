@@ -13,7 +13,7 @@ import {ICost} from '../../interfaces/cost.interface';
 export class CoreComponent implements OnInit {
   daCurrency: ICurrency;
   baseCurrency: ICurrency;
-  currencyOptions: ICurrency[];
+  currencyOptions: string[];
   costs: ICost[];
   exchangeRates: IExchangeRate[];
 
@@ -35,9 +35,9 @@ export class CoreComponent implements OnInit {
       };
       tempOptions = [...tempOptions, newCurrency];
     }
-    this.currencyOptions = [...tempOptions];
+    this.currencyOptions = [...tempOptions.map(e => e.currency)];
 
-    const convertedExchangeRateCollection = this.currencyOptions.map(targetCurrency => {
+    const convertedExchangeRateCollection = tempOptions.map(targetCurrency => {
       return <IExchangeRate>{
         sourceCurrency: targetCurrency.currency,
         paymentCurrencies: this.generateConvertedCurrencyPaymentRates(targetCurrency, initialExchangeRate)
@@ -47,33 +47,24 @@ export class CoreComponent implements OnInit {
       ...this.exchangeRates,
       ...convertedExchangeRateCollection.filter(e => e.sourceCurrency !== initialExchangeRate.sourceCurrency)
     ];
-
-    console.log(JSON.stringify(this.exchangeRates));
   }
 
   ngOnInit(): void {
   }
 
-  generateConvertedCurrencyPaymentRates(targetCurrency: ICurrency, baselineExchangeRate: IExchangeRate): IExchangeRatePaymentCurrency[] {
-    console.log(`triggering update currency handler with currency: ${targetCurrency.currency}...`);
+  generateConvertedCurrencyPaymentRates(targetCurrency: ICurrency, baselineExchangeRate: IExchangeRate)
+    : IExchangeRatePaymentCurrency[] {
     const baselinePaymentRates = baselineExchangeRate.paymentCurrencies;
     let resultPaymentCurrencyRates: IExchangeRatePaymentCurrency[] = [];
-    let newCurrencyOptions: ICurrency[] = [];
 
     const rateFromPrevToSelected = 1 / targetCurrency.exchangeRate!;
-    console.log(`rate from previous to selected: ${rateFromPrevToSelected}`)
 
     for (let i = 0; i < baselinePaymentRates.length; i++) {
       let newCurrencyRate: IExchangeRatePaymentCurrency;
-      let newCurrencyOption: ICurrency;
       if (baselinePaymentRates[i].toCurrency === baselineExchangeRate.sourceCurrency) {
         newCurrencyRate = {
           fromCurrency: targetCurrency.currency,
           toCurrency: baselinePaymentRates[i].toCurrency,
-          exchangeRate: rateFromPrevToSelected
-        }
-        newCurrencyOption = {
-          currency: baselinePaymentRates[i].toCurrency,
           exchangeRate: rateFromPrevToSelected
         }
       } else {
@@ -84,28 +75,11 @@ export class CoreComponent implements OnInit {
             ? 1
             : baselinePaymentRates[i].exchangeRate / rateFromPrevToSelected
         };
-        newCurrencyOption = {
-          currency: baselinePaymentRates[i].toCurrency,
-          exchangeRate: newCurrencyRate.exchangeRate
-        };
       }
       resultPaymentCurrencyRates = [...resultPaymentCurrencyRates, newCurrencyRate];
-      newCurrencyOptions = [...newCurrencyOptions, newCurrencyOption];
     }
 
     return resultPaymentCurrencyRates;
-
-    // this.exchangeRate = <IExchangeRate>{
-    //   sourceCurrency: selectedCurrency.currency,
-    //   paymentCurrencies: [...newPaymentCurrencyRates]
-    // };
-    // this.currencyOptions = [...newCurrencyOptions];
-    // this.baseCurrency = {
-    //   ...this.baseCurrency,
-    //   exchangeRate: this.exchangeRate.paymentCurrencies.find(e => e.toCurrency === this.baseCurrency.currency)!.exchangeRate
-    // };
-    //
-    // console.log(this.exchangeRate.paymentCurrencies);
   }
 
 }

@@ -10,11 +10,11 @@ export class CurrencyDropdownComponent implements OnInit {
   @Input() label: string = 'Currency';
 
   @Input()
-  get options(): ICurrency[] {
+  get options(): string[] {
     throw new Error('Attribute "options" is required');
   }
 
-  set options(value: ICurrency[]) {
+  set options(value: string[]) {
     Object.defineProperty(this, 'options', {
       value,
       writable: true,
@@ -23,11 +23,11 @@ export class CurrencyDropdownComponent implements OnInit {
   }
 
   @Input()
-  get initialValue(): ICurrency {
+  get initialValue(): string {
     throw new Error('Attribute "initialValue" is required');
   }
 
-  set initialValue(value: ICurrency) {
+  set initialValue(value: string) {
     Object.defineProperty(this, 'initialValue', {
       value,
       writable: true,
@@ -35,9 +35,9 @@ export class CurrencyDropdownComponent implements OnInit {
     });
   }
 
-  currentValue: ICurrency = {currency: ''};
+  currentValue: string = '';
 
-  @Output() currencySelected = new EventEmitter<ICurrency>();
+  @Output() currencySelected = new EventEmitter<string>();
 
   constructor() {
   }
@@ -50,7 +50,7 @@ export class CurrencyDropdownComponent implements OnInit {
     if (event) {
       const renderedEvent = event.target as HTMLInputElement;
 
-      const selectedCurrency = this.options.find(e => e.currency === renderedEvent.value);
+      const selectedCurrency = this.options.find(e => e === renderedEvent.value);
       if (selectedCurrency) {
         this.currentValue = selectedCurrency;
         this.currencySelected.emit(this.currentValue);
