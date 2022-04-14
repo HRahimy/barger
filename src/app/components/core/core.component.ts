@@ -40,21 +40,22 @@ export class CoreComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // private updateDaCurrency(currency: string): void {
-  //   // Using `for` loop instead of `this.exchangeRate.paymentCurrencies.forEach()`
-  //   // for better performance.
-  //   const paymentCurrencies = this.exchangeRate.paymentCurrencies;
-  //   let tempNewOptions: ICurrency[] = [];
-  //   for (let i = 0; i < paymentCurrencies.length; i++) {
-  //     if (!tempNewOptions.find(e => e.currency === paymentCurrencies[i].toCurrency)) {
-  //       const newCurrency = <ICurrency>{
-  //         currency: paymentCurrencies[i].toCurrency,
-  //         exchangeRate: 1 / paymentCurrencies[i].exchangeRate
-  //       };
-  //       tempNewOptions = [...tempNewOptions, newCurrency];
-  //     }
-  //   }
-  //   this.currencyOptions = [...tempNewOptions];
-  // }
+  updateDaCurrency(currency: ICurrency): void {
+    console.log(`triggering update currency handler with currency: ${currency.currency}...`);
+    // Using `for` loop instead of `this.exchangeRate.paymentCurrencies.forEach()`
+    // for better performance.
+    // const paymentCurrencies = this.exchangeRate.paymentCurrencies;
+    // let tempNewOptions: ICurrency[] = [];
+    // for (let i = 0; i < paymentCurrencies.length; i++) {
+    //   if (!tempNewOptions.find(e => e.currency === paymentCurrencies[i].toCurrency)) {
+    //     const newCurrency = <ICurrency>{
+    //       currency: paymentCurrencies[i].toCurrency,
+    //       exchangeRate: 1 / paymentCurrencies[i].exchangeRate
+    //     };
+    //     tempNewOptions = [...tempNewOptions, newCurrency];
+    //   }
+    // }
+    // this.currencyOptions = [...tempNewOptions];
+  }
 
 }

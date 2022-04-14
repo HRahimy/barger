@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ICurrency} from '../../interfaces/currency.interface';
 
 @Component({
@@ -37,6 +37,8 @@ export class CurrencyDropdownComponent implements OnInit {
 
   currentValue: ICurrency = {currency: ''};
 
+  @Output() currencySelected = new EventEmitter<ICurrency>();
+
   constructor() {
   }
 
@@ -48,9 +50,10 @@ export class CurrencyDropdownComponent implements OnInit {
     if (event) {
       const renderedEvent = event.target as HTMLInputElement;
 
-      if (this.options.find(e => e.currency === renderedEvent.value)) {
-        this.currentValue = {currency: renderedEvent.value};
-        console.log(renderedEvent.value)
+      const selectedCurrency = this.options.find(e => e.currency === renderedEvent.value);
+      if (selectedCurrency) {
+        this.currentValue = selectedCurrency;
+        this.currencySelected.emit(this.currentValue);
       }
     }
   }

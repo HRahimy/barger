@@ -1,4 +1,5 @@
-<app-currency-dropdown [options]="currencyOptions" [initialValue]="daCurrency"></app-currency-dropdown>
+<app-currency-dropdown [options]="currencyOptions" [initialValue]="daCurrency"
+                       (currencySelected)="updateDaCurrency($event)"></app-currency-dropdown>
 <table>
   <tr>
     <th>Port expenses</th>
