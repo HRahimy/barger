@@ -15,17 +15,18 @@ export class CoreComponent implements OnInit {
   baseCurrency: ICurrency;
   currencyOptions: ICurrency[];
   costs: ICost[];
-  exchangeRate: IExchangeRate;
+  exchangeRates: IExchangeRate[];
 
   constructor(private route: ActivatedRoute) {
     const costsResponse: ICostsResponse = route.snapshot.data['costs'];
     this.daCurrency = costsResponse.daCurrency;
     this.baseCurrency = costsResponse.baseCurrency;
     this.costs = costsResponse.costs;
-    this.exchangeRate = route.snapshot.data['exchangeRates'];
+    const initialExchangeRate: IExchangeRate = route.snapshot.data['exchangeRates'];
+    this.exchangeRates = [initialExchangeRate];
 
     // Initialize currency options
-    const paymentCurrencies = this.exchangeRate.paymentCurrencies;
+    const paymentCurrencies = initialExchangeRate.paymentCurrencies;
     let tempOptions: ICurrency[] = [];
     for (let i = 0; i < paymentCurrencies.length; i++) {
       const newCurrency = <ICurrency>{
@@ -35,71 +36,76 @@ export class CoreComponent implements OnInit {
       tempOptions = [...tempOptions, newCurrency];
     }
     this.currencyOptions = [...tempOptions];
+
+    const convertedExchangeRateCollection = this.currencyOptions.map(targetCurrency => {
+      return <IExchangeRate>{
+        sourceCurrency: targetCurrency.currency,
+        paymentCurrencies: this.generateConvertedCurrencyPaymentRates(targetCurrency, initialExchangeRate)
+      };
+    });
+    this.exchangeRates = [
+      ...this.exchangeRates,
+      ...convertedExchangeRateCollection.filter(e => e.sourceCurrency !== initialExchangeRate.sourceCurrency)
+    ];
+
+    console.log(JSON.stringify(this.exchangeRates));
   }
 
   ngOnInit(): void {
   }
 
-  updateDaCurrency(selectedCurrency: ICurrency): void {
-    console.log(`triggering update currency handler with currency: ${selectedCurrency.currency}...`);
-    const currentPaymentCurrencyRates = this.exchangeRate.paymentCurrencies;
-    let newPaymentCurrencyRates: IExchangeRatePaymentCurrency[] = [];
+  generateConvertedCurrencyPaymentRates(targetCurrency: ICurrency, baselineExchangeRate: IExchangeRate): IExchangeRatePaymentCurrency[] {
+    console.log(`triggering update currency handler with currency: ${targetCurrency.currency}...`);
+    const baselinePaymentRates = baselineExchangeRate.paymentCurrencies;
+    let resultPaymentCurrencyRates: IExchangeRatePaymentCurrency[] = [];
     let newCurrencyOptions: ICurrency[] = [];
 
-    const rateFromPrevToSelected = 1 / selectedCurrency.exchangeRate!;
+    const rateFromPrevToSelected = 1 / targetCurrency.exchangeRate!;
     console.log(`rate from previous to selected: ${rateFromPrevToSelected}`)
 
-    for (let i = 0; i < currentPaymentCurrencyRates.length; i++) {
+    for (let i = 0; i < baselinePaymentRates.length; i++) {
       let newCurrencyRate: IExchangeRatePaymentCurrency;
       let newCurrencyOption: ICurrency;
-      if (currentPaymentCurrencyRates[i].toCurrency === this.exchangeRate.sourceCurrency) {
+      if (baselinePaymentRates[i].toCurrency === baselineExchangeRate.sourceCurrency) {
         newCurrencyRate = {
-          fromCurrency: selectedCurrency.currency,
-          toCurrency: currentPaymentCurrencyRates[i].toCurrency,
+          fromCurrency: targetCurrency.currency,
+          toCurrency: baselinePaymentRates[i].toCurrency,
           exchangeRate: rateFromPrevToSelected
         }
         newCurrencyOption = {
-          currency: currentPaymentCurrencyRates[i].toCurrency,
+          currency: baselinePaymentRates[i].toCurrency,
           exchangeRate: rateFromPrevToSelected
         }
       } else {
         newCurrencyRate = {
-          fromCurrency: selectedCurrency.currency,
-          toCurrency: currentPaymentCurrencyRates[i].toCurrency,
-          exchangeRate: selectedCurrency.currency === currentPaymentCurrencyRates[i].toCurrency
+          fromCurrency: targetCurrency.currency,
+          toCurrency: baselinePaymentRates[i].toCurrency,
+          exchangeRate: targetCurrency.currency === baselinePaymentRates[i].toCurrency
             ? 1
-            : currentPaymentCurrencyRates[i].exchangeRate / rateFromPrevToSelected
+            : baselinePaymentRates[i].exchangeRate / rateFromPrevToSelected
         };
         newCurrencyOption = {
-          currency: currentPaymentCurrencyRates[i].toCurrency,
+          currency: baselinePaymentRates[i].toCurrency,
           exchangeRate: newCurrencyRate.exchangeRate
         };
       }
-      newPaymentCurrencyRates = [...newPaymentCurrencyRates, newCurrencyRate];
+      resultPaymentCurrencyRates = [...resultPaymentCurrencyRates, newCurrencyRate];
       newCurrencyOptions = [...newCurrencyOptions, newCurrencyOption];
     }
 
-    this.exchangeRate = <IExchangeRate>{
-      sourceCurrency: selectedCurrency.currency,
-      paymentCurrencies: [...newPaymentCurrencyRates]
-    };
-    this.currencyOptions = [...newCurrencyOptions];
+    return resultPaymentCurrencyRates;
 
-    console.log(this.exchangeRate.paymentCurrencies);
-    // Using `for` loop instead of `this.exchangeRate.paymentCurrencies.forEach()`
-    // for better performance.
-    // const paymentCurrencies = this.exchangeRate.paymentCurrencies;
-    // let tempNewOptions: ICurrency[] = [];
-    // for (let i = 0; i < paymentCurrencies.length; i++) {
-    //   if (!tempNewOptions.find(e => e.currency === paymentCurrencies[i].toCurrency)) {
-    //     const newCurrency = <ICurrency>{
-    //       currency: paymentCurrencies[i].toCurrency,
-    //       exchangeRate: 1 / paymentCurrencies[i].exchangeRate
-    //     };
-    //     tempNewOptions = [...tempNewOptions, newCurrency];
-    //   }
-    // }
-    // this.currencyOptions = [...tempNewOptions];
+    // this.exchangeRate = <IExchangeRate>{
+    //   sourceCurrency: selectedCurrency.currency,
+    //   paymentCurrencies: [...newPaymentCurrencyRates]
+    // };
+    // this.currencyOptions = [...newCurrencyOptions];
+    // this.baseCurrency = {
+    //   ...this.baseCurrency,
+    //   exchangeRate: this.exchangeRate.paymentCurrencies.find(e => e.toCurrency === this.baseCurrency.currency)!.exchangeRate
+    // };
+    //
+    // console.log(this.exchangeRate.paymentCurrencies);
   }
 
 }

@@ -6,12 +6,14 @@ import {AppComponent} from './app.component';
 import {CoreComponent} from './components/core/core.component';
 import {HttpClientModule} from '@angular/common/http';
 import {CurrencyDropdownComponent} from './components/currency-dropdown/currency-dropdown.component';
+import { BaseToCurrentDisplayComponent } from './components/base-to-current-display/base-to-current-display.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CoreComponent,
-    CurrencyDropdownComponent
+    CurrencyDropdownComponent,
+    BaseToCurrentDisplayComponent
   ],
   imports: [
     BrowserModule,
