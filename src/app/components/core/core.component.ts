@@ -73,7 +73,7 @@ export class CoreComponent implements OnInit {
           toCurrency: baselinePaymentRates[i].toCurrency,
           exchangeRate: targetCurrency.currency === baselinePaymentRates[i].toCurrency
             ? 1
-            : baselinePaymentRates[i].exchangeRate / rateFromPrevToSelected
+            : rateFromPrevToSelected / (1 / baselinePaymentRates[i].exchangeRate)
         };
       }
       resultPaymentCurrencyRates = [...resultPaymentCurrencyRates, newCurrencyRate];

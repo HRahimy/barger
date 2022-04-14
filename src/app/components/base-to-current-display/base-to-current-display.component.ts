@@ -7,7 +7,7 @@ import {ICurrency} from '../../interfaces/currency.interface';
   styleUrls: ['./base-to-current-display.component.css']
 })
 export class BaseToCurrentDisplayComponent implements OnInit {
-
+  @Input() selectedCurrency: string = 'SGD';
   @Input() baseCurrency: ICurrency = {currency: 'USD', exchangeRate: 0.7598199759292418};
 
   constructor() {
