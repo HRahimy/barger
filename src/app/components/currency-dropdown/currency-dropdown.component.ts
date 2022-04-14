@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ICurrency} from "../../interfaces/currency.interface";
+import {ICurrency} from '../../interfaces/currency.interface';
 
 @Component({
   selector: 'app-currency-dropdown',
@@ -8,14 +8,40 @@ import {ICurrency} from "../../interfaces/currency.interface";
 })
 export class CurrencyDropdownComponent implements OnInit {
   @Input() label: string = 'Currency';
-  @Input() options: ICurrency[] = [{currency: 'USD'}];
-  @Input() initialValue?: ICurrency;
-  currentValue: ICurrency = {currency: 'USD'};
+
+  @Input()
+  get options(): ICurrency[] {
+    throw new Error('Attribute "options" is required');
+  }
+
+  set options(value: ICurrency[]) {
+    Object.defineProperty(this, 'options', {
+      value,
+      writable: true,
+      configurable: true
+    });
+  }
+
+  @Input()
+  get initialValue(): ICurrency {
+    throw new Error('Attribute "initialValue" is required');
+  }
+
+  set initialValue(value: ICurrency) {
+    Object.defineProperty(this, 'initialValue', {
+      value,
+      writable: true,
+      configurable: true
+    });
+  }
+
+  currentValue: ICurrency = {currency: ''};
 
   constructor() {
   }
 
   ngOnInit(): void {
+    this.currentValue = this.initialValue;
   }
 
   selectCurrency(event: Event) {
