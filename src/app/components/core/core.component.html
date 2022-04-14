@@ -1,5 +1,6 @@
 <app-currency-dropdown [options]="currencyOptions"
-                       [initialValue]="daCurrency.currency"></app-currency-dropdown>
+                       [initialValue]="daCurrency.currency"
+                       (currencySelected)="updateSelectedCurrency($event)"></app-currency-dropdown>
 <app-base-to-current-display [baseCurrency]="baseCurrency"></app-base-to-current-display>
 <table>
   <tr>

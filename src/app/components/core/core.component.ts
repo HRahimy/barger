@@ -82,4 +82,23 @@ export class CoreComponent implements OnInit {
     return resultPaymentCurrencyRates;
   }
 
+  updateSelectedCurrency(newCurrency: string): void {
+    const fxSet = this.exchangeRates.find(e => e.sourceCurrency === newCurrency);
+    if (!fxSet) {
+      throw new Error(`Currency "${newCurrency}" not found`);
+    }
+
+    const baseExchangeRate = fxSet.paymentCurrencies.find(e => e.toCurrency === this.baseCurrency.currency);
+    if (!baseExchangeRate) {
+      throw new Error(`Exchange rate from "${fxSet.sourceCurrency}" to "${this.baseCurrency.currency}" not found`);
+    }
+
+    this.daCurrency = {currency: newCurrency};
+    this.baseCurrency = {
+      ...this.baseCurrency,
+      exchangeRate: baseExchangeRate.exchangeRate
+    };
+
+  }
+
 }
