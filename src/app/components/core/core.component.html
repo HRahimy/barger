@@ -1,8 +1,11 @@
-<app-currency-dropdown [options]="currencyOptions"
-                       [initialValue]="daCurrency.currency"
-                       (currencySelected)="updateSelectedCurrency($event)"></app-currency-dropdown>
-<app-base-to-current-display [baseCurrency]="baseCurrency"
-                             [selectedCurrency]="daCurrency.currency"></app-base-to-current-display>
+<div class="currency-controls">
+  <app-currency-dropdown [options]="currencyOptions"
+                         [initialValue]="daCurrency.currency"
+                         (currencySelected)="updateSelectedCurrency($event)"></app-currency-dropdown>
+  <app-base-to-current-display [baseCurrency]="baseCurrency"
+                               [selectedCurrency]="daCurrency.currency"></app-base-to-current-display>
+</div>
+
 <table>
   <tr>
     <th>Port expenses</th>

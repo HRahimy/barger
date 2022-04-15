@@ -1,1 +1,1 @@
-<h4>1 {{baseCurrency.currency}} = {{1 / baseCurrency.exchangeRate!}} {{selectedCurrency}}</h4>
+<h4>1 {{baseCurrency.currency}} = {{(1 / baseCurrency.exchangeRate!) | number: '1.2-4'}} {{selectedCurrency}}</h4>
