@@ -9,6 +9,8 @@ import {CostItemSubCostType, ICostItemSubCost} from '../../interfaces/cost-item.
 })
 export class CostTableComponent implements OnInit {
   subCostType = CostItemSubCostType;
+  itemsToShowMessagesOf: number[] = [];
+
   // Solution to making `@Input()` properties required
   // and non-nullable: https://stackoverflow.com/a/50293330/5472560
   @Input()
@@ -98,6 +100,22 @@ export class CostTableComponent implements OnInit {
     });
 
     return result;
+  }
+
+  toggleMessages(costItemId: number): void {
+    const existingCostItemId = this.itemsToShowMessagesOf.find(e => e === costItemId);
+
+    if (existingCostItemId) {
+      this.itemsToShowMessagesOf = this.itemsToShowMessagesOf.filter(e => e !== costItemId);
+    } else {
+      this.itemsToShowMessagesOf = [...this.itemsToShowMessagesOf, costItemId];
+    }
+  }
+
+  showMessages(costItemId: number): boolean {
+    const existingCostItemId = this.itemsToShowMessagesOf.find(e => e === costItemId);
+
+    return !!existingCostItemId;
   }
 
 }

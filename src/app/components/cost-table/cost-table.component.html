@@ -7,26 +7,36 @@
       <th>Screened</th>
       <th></th>
     </tr>
-    <tr *ngFor="let costItem of cost.costItems">
-      <td>{{costItem.name}}</td>
-      <td>{{costItem.costItemAlias.accountingCode}}</td>
-      <td *ngIf="getSubCostWithType(costItem.id, subCostType.Quoted) as quotedSubCost">
-        <app-sub-cost-display [baseCurrencyLabel]="baseCurrency"
-                              [baseCurrencyValue]="quotedSubCost.amount"
-                              [selectedCurrencyLabel]="selectedCurrency"
-                              [selectedCurrencyValue]="quotedSubCost.amount * rateFromBaseToSelectedCurrency"></app-sub-cost-display>
-      </td>
-      <td *ngIf="getSubCostWithType(costItem.id, subCostType.Screened) as screenedSubCost">
-        <app-sub-cost-display [baseCurrencyLabel]="baseCurrency"
-                              [baseCurrencyValue]="screenedSubCost.amount"
-                              [selectedCurrencyLabel]="selectedCurrency"
-                              [selectedCurrencyValue]="screenedSubCost.amount * rateFromBaseToSelectedCurrency"></app-sub-cost-display>
-      </td>
-      <td *ngIf="costItem.comments">
-        {{costItem.comments.length}} {{costItem.comments.length > 1 ? 'comments' : 'comment'}}
-      </td>
-      <td *ngIf="!costItem.comments">No comments</td>
-    </tr>
+    <ng-container *ngFor="let costItem of cost.costItems">
+      <tr>
+        <td>{{costItem.name}}</td>
+        <td>{{costItem.costItemAlias.accountingCode}}</td>
+        <td *ngIf="getSubCostWithType(costItem.id, subCostType.Quoted) as quotedSubCost">
+          <app-sub-cost-display [baseCurrencyLabel]="baseCurrency"
+                                [baseCurrencyValue]="quotedSubCost.amount"
+                                [selectedCurrencyLabel]="selectedCurrency"
+                                [selectedCurrencyValue]="quotedSubCost.amount * rateFromBaseToSelectedCurrency"></app-sub-cost-display>
+        </td>
+        <td *ngIf="getSubCostWithType(costItem.id, subCostType.Screened) as screenedSubCost">
+          <app-sub-cost-display [baseCurrencyLabel]="baseCurrency"
+                                [baseCurrencyValue]="screenedSubCost.amount"
+                                [selectedCurrencyLabel]="selectedCurrency"
+                                [selectedCurrencyValue]="screenedSubCost.amount * rateFromBaseToSelectedCurrency"></app-sub-cost-display>
+        </td>
+        <td *ngIf="costItem.comments">
+          {{costItem.comments.length}} {{costItem.comments.length > 1 ? 'comments' : 'comment'}}
+          <button type="button" (click)="toggleMessages(costItem.id)">Toggle messages</button>
+        </td>
+        <td *ngIf="!costItem.comments">No comments
+          <button type="button" (click)="toggleMessages(costItem.id)">Toggle messages</button>
+        </td>
+      </tr>
+
+      <tr *ngIf="showMessages(costItem.id)">
+        <td colspan="5">Showing messages</td>
+      </tr>
+    </ng-container>
+
 
     <tr>
       <td class="total-row total-label">Total</td>
