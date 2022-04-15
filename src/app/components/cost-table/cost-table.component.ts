@@ -24,7 +24,47 @@ export class CostTableComponent implements OnInit {
     });
   }
 
-  constructor() { }
+  @Input()
+  get selectedCurrency(): string {
+    throw new Error('Attribute "selectedCurrency" is required');
+  }
+
+  set selectedCurrency(value: string) {
+    Object.defineProperty(this, 'selectedCurrency', {
+      value,
+      writable: true,
+      configurable: true
+    });
+  }
+
+  @Input()
+  get baseCurrency(): string {
+    throw new Error('Attribute "baseCurrency" is required');
+  }
+
+  set baseCurrency(value: string) {
+    Object.defineProperty(this, 'baseCurrency', {
+      value,
+      writable: true,
+      configurable: true
+    });
+  }
+
+  @Input()
+  get rateFromBaseToSelectedCurrency(): number {
+    throw new Error('Attribute "rateFromBaseToSelectedCurrency" is required');
+  }
+
+  set rateFromBaseToSelectedCurrency(value: number) {
+    Object.defineProperty(this, 'rateFromBaseToSelectedCurrency', {
+      value,
+      writable: true,
+      configurable: true
+    });
+  }
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

@@ -101,4 +101,18 @@ export class CoreComponent implements OnInit {
 
   }
 
+  get rateFromBaseToSelectedCurrency(): number {
+    const baseCurrRatesCollection = this.exchangeRates.find(e => e.sourceCurrency === this.baseCurrency.currency);
+    if (!baseCurrRatesCollection) {
+      throw new Error(`Could not find exchange rate collection for base currency ${this.baseCurrency.currency}`);
+    }
+
+    const resultExchangeRate = baseCurrRatesCollection.paymentCurrencies.find(e => e.toCurrency === this.daCurrency.currency);
+    if (!resultExchangeRate) {
+      throw new Error(`Could not find exchange rate from ${this.baseCurrency.currency} to ${this.daCurrency.currency}`);
+    }
+
+    return resultExchangeRate.exchangeRate;
+  }
+
 }

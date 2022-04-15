@@ -7,6 +7,8 @@
 </div>
 
 <div>
-  <app-cost-table *ngFor="let itemCost of costs" [cost]="itemCost"></app-cost-table>
+  <app-cost-table *ngFor="let itemCost of costs" [cost]="itemCost"
+                  [selectedCurrency]="daCurrency.currency"
+                  [baseCurrency]="baseCurrency.currency"
+                  [rateFromBaseToSelectedCurrency]="rateFromBaseToSelectedCurrency"></app-cost-table>
 </div>
-
