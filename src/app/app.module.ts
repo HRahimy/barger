@@ -8,6 +8,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {CurrencyDropdownComponent} from './components/currency-dropdown/currency-dropdown.component';
 import { BaseToCurrentDisplayComponent } from './components/base-to-current-display/base-to-current-display.component';
 import { CostTableComponent } from './components/cost-table/cost-table.component';
+import { SubCostDisplayComponent } from './components/sub-cost-display/sub-cost-display.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { CostTableComponent } from './components/cost-table/cost-table.component
     CoreComponent,
     CurrencyDropdownComponent,
     BaseToCurrentDisplayComponent,
-    CostTableComponent
+    CostTableComponent,
+    SubCostDisplayComponent
   ],
   imports: [
     BrowserModule,
