@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ICost} from '../../interfaces/cost.interface';
+import {CostItemSubCostType, ICostItemSubCost} from '../../interfaces/cost-item.interface';
 
 @Component({
   selector: 'app-cost-table',
@@ -7,7 +8,7 @@ import {ICost} from '../../interfaces/cost.interface';
   styleUrls: ['./cost-table.component.css']
 })
 export class CostTableComponent implements OnInit {
-
+  subCostType = CostItemSubCostType;
   // Solution to making `@Input()` properties required
   // and non-nullable: https://stackoverflow.com/a/50293330/5472560
   @Input()
@@ -26,6 +27,28 @@ export class CostTableComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  getSubCostWithType(costItemId: number, type: CostItemSubCostType): ICostItemSubCost {
+    const costItem = this.cost.costItems.find(e => e.id === costItemId);
+    if (!costItem) {
+      throw new Error(`CostItem: 'id: ${costItemId}' not found`);
+    }
+
+    switch (type) {
+      case CostItemSubCostType.Quoted:
+        const resultQuotedCost = costItem.costs.find(e => e.type === type);
+        if (!resultQuotedCost) {
+          throw new Error(`SubCost for "CostItem: 'id: ${costItemId}'" of ${type} type not found`)
+        }
+        return resultQuotedCost;
+      case CostItemSubCostType.Screened:
+        const resultScreenedCost = costItem.costs.find(e => e.type === type);
+        if (!resultScreenedCost) {
+          throw new Error(`SubCost for "CostItem: 'id: ${costItemId}'" of ${type} type not found`)
+        }
+        return resultScreenedCost;
+    }
   }
 
 }

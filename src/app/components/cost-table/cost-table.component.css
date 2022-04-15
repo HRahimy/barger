@@ -1,6 +1,11 @@
+.table-container {
+  border: 2px solid lightgrey;
+  border-spacing: 0;
+  margin-top: 16px;
+}
+
 table {
   width: 100%;
-  padding-top: 16px;
   border: none;
   border-spacing: 0;
   table-layout: fixed;
@@ -11,6 +16,10 @@ th {
   color: white;
   text-align: left;
   font-weight: 500;
+  padding: 12px;
+}
+
+td {
   padding: 12px;
 }
 

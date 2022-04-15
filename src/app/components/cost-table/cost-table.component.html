@@ -1,8 +1,26 @@
-<table>
-  <tr>
-    <th>{{cost.name}}</th>
-    <th>Account code</th>
-    <th>Quoted</th>
-    <th>Screened</th>
-  </tr>
-</table>
+<div class="table-container">
+  <table>
+    <tr>
+      <th>{{cost.name}}</th>
+      <th>Account code</th>
+      <th>Quoted</th>
+      <th>Screened</th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let costItem of cost.costItems">
+      <td>{{costItem.name}}</td>
+      <td>{{costItem.costItemAlias.accountingCode}}</td>
+      <td>
+        {{getSubCostWithType(costItem.id, subCostType.Quoted).amount}}
+      </td>
+      <td>
+        {{getSubCostWithType(costItem.id, subCostType.Screened).amount}}
+      </td>
+      <td *ngIf="costItem.comments">
+        {{costItem.comments.length}} {{costItem.comments.length > 1 ? 'comments' : 'comment'}}
+      </td>
+      <td *ngIf="!costItem.comments">No comments</td>
+    </tr>
+  </table>
+</div>
+

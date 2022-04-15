@@ -16,11 +16,21 @@ export interface ICostItemAnnotation {
   name: string;
 }
 
+export enum CostItemSubCostType {
+  Quoted = 'Quoted',
+  Screened = 'Screened'
+}
+
 export interface ICostItemSubCost {
   daStage: string;
   persona: string;
-  type: 'Quoted' | 'Screened';
+  type: CostItemSubCostType;
   amount: number;
+}
+
+export enum CostItemCommentType {
+  Internal = 'Internal',
+  External = 'External'
 }
 
 export interface ICostItemComments {
@@ -29,6 +39,6 @@ export interface ICostItemComments {
   persona: string;
   author: string;
   comment: string;
-  type: 'Internal' | 'External';
+  type: CostItemCommentType;
   dateString: string;
 }
