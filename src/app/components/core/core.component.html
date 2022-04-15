@@ -6,11 +6,7 @@
                                [selectedCurrency]="daCurrency.currency"></app-base-to-current-display>
 </div>
 
-<table>
-  <tr>
-    <th>Port expenses</th>
-    <th>Account code</th>
-    <th>Quoted</th>
-    <th>Screened</th>
-  </tr>
-</table>
+<div>
+  <app-cost-table *ngFor="let itemCost of costs" [cost]="itemCost"></app-cost-table>
+</div>
+

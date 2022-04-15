@@ -1,5 +1,4 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ICurrency} from '../../interfaces/currency.interface';
 
 @Component({
   selector: 'app-currency-dropdown',
@@ -9,6 +8,8 @@ import {ICurrency} from '../../interfaces/currency.interface';
 export class CurrencyDropdownComponent implements OnInit {
   @Input() label: string = 'Currency';
 
+  // Solution to making `@Input()` properties required
+  // and non-nullable: https://stackoverflow.com/a/50293330/5472560
   @Input()
   get options(): string[] {
     throw new Error('Attribute "options" is required');
