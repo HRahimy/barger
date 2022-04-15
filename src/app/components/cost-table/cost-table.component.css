@@ -24,3 +24,11 @@ td {
   padding: 12px;
 }
 
+.total-row {
+  border-top: 2px solid rgba(47, 133, 171, .7);
+}
+
+.total-label {
+  font-weight: bold;
+}
+

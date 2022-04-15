@@ -91,4 +91,13 @@ export class CostTableComponent implements OnInit {
     }
   }
 
+  getTotalCostOfType(type: CostItemSubCostType): number {
+    let result = 0;
+    const typeSubCosts = this.cost.costItems.map(e => {
+      return e.costs.filter(f => f.type === type).forEach(g => result += g.amount);
+    });
+
+    return result;
+  }
+
 }
