@@ -1,0 +1,30 @@
+<div class="controls-container">
+  <ng-container *ngFor="let comment of comments">
+    <div class="comment-container">
+      <table>
+        <tr>
+          <td>
+            <div class="chip">
+              <div class="chip-content">
+                {{comment.type}}
+              </div>
+            </div>
+          </td>
+          <td>{{comment.comment}}</td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <td class="end"><h4>{{comment.author}}</h4></td>
+          <td class="end">{{comment.date | date: "dd MMMM yyyy HH:mm"}}</td>
+          <td class="end">
+            <div class="comment-controls-container">
+              <button type="button" disabled>E</button>
+              <button type="button" disabled>D</button>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </ng-container>
+</div>

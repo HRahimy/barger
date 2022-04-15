@@ -9,6 +9,7 @@ import {CurrencyDropdownComponent} from './components/currency-dropdown/currency
 import { BaseToCurrentDisplayComponent } from './components/base-to-current-display/base-to-current-display.component';
 import { CostTableComponent } from './components/cost-table/cost-table.component';
 import { SubCostDisplayComponent } from './components/sub-cost-display/sub-cost-display.component';
+import { CommentControlsComponent } from './components/comment-controls/comment-controls.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { SubCostDisplayComponent } from './components/sub-cost-display/sub-cost-
     CurrencyDropdownComponent,
     BaseToCurrentDisplayComponent,
     CostTableComponent,
-    SubCostDisplayComponent
+    SubCostDisplayComponent,
+    CommentControlsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,55 @@
+.controls-container {
+  background-color: rgba(47, 133, 171, .3);
+}
+
+.chip{
+  display: inline-flex;
+  flex-direction: row;
+  border: 1px solid rgba(47, 133, 171, .7);
+  background-color: white;
+  cursor: default;
+  outline: none;
+  padding: 0;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  align-items: center;
+  border-radius: 32px;
+  vertical-align: middle;
+  text-decoration: none;
+  justify-content: center;
+}
+
+.chip-content{
+  cursor: inherit;
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  padding-inline: 8px;
+  padding-block: 2px;
+}
+
+table {
+  /*width: 50%;*/
+  table-layout: fixed;
+}
+
+td {
+  text-align: start;
+  padding-inline: 12px;
+}
+
+td.end {
+  text-align: end;
+}
+
+.comment-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comment-controls-container {
+  display: flex;
+  align-items: center;
+}

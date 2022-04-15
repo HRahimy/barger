@@ -4,7 +4,7 @@ export interface ICostItem {
   costItemAlias: ICostItemAlias;
   annotation: ICostItemAnnotation;
   costs: ICostItemSubCost[];
-  comments: ICostItemComments[];
+  comments: ICostItemComment[];
 }
 
 export interface ICostItemAlias {
@@ -33,12 +33,12 @@ export enum CostItemCommentType {
   External = 'External'
 }
 
-export interface ICostItemComments {
+export interface ICostItemComment {
   id: number;
   daStage: string;
   persona: string;
   author: string;
   comment: string;
   type: CostItemCommentType;
-  dateString: string;
+  date: string;
 }
