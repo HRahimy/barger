@@ -1,5 +1,16 @@
 table {
   width: 100%;
   padding-top: 16px;
+  border: none;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+th {
+  background: #2F85AB;
+  color: white;
+  text-align: left;
+  font-weight: 500;
+  padding: 12px;
 }
 
