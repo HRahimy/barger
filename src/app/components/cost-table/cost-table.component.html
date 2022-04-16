@@ -3,32 +3,32 @@
     <tr>
       <th>{{cost.name}}</th>
       <th>Account code</th>
-      <th>Quoted</th>
-      <th>Screened</th>
+      <th class="right-align">Quoted</th>
+      <th class="right-align">Screened</th>
       <th></th>
     </tr>
     <ng-container *ngFor="let costItem of cost.costItems">
       <tr>
-        <td class="padded-td">{{costItem.name}}</td>
-        <td class="padded-td">{{costItem.costItemAlias.accountingCode}}</td>
-        <td class="padded-td" *ngIf="getSubCostWithType(costItem.id, subCostType.Quoted) as quotedSubCost">
+        <td class="padded label-value">{{costItem.name}}</td>
+        <td class="padded label-value">{{costItem.costItemAlias.accountingCode}}</td>
+        <td class="padded" *ngIf="getSubCostWithType(costItem.id, subCostType.Quoted) as quotedSubCost">
           <app-sub-cost-display [baseCurrencyLabel]="baseCurrency"
                                 [baseCurrencyValue]="quotedSubCost.amount"
                                 [selectedCurrencyLabel]="selectedCurrency"
                                 [selectedCurrencyValue]="quotedSubCost.amount * rateFromBaseToSelectedCurrency"></app-sub-cost-display>
         </td>
-        <td class="padded-td" *ngIf="getSubCostWithType(costItem.id, subCostType.Screened) as screenedSubCost">
+        <td class="padded" *ngIf="getSubCostWithType(costItem.id, subCostType.Screened) as screenedSubCost">
           <app-sub-cost-display [baseCurrencyLabel]="baseCurrency"
                                 [baseCurrencyValue]="screenedSubCost.amount"
                                 [selectedCurrencyLabel]="selectedCurrency"
                                 [selectedCurrencyValue]="screenedSubCost.amount * rateFromBaseToSelectedCurrency"
                                 [subCostType]="subCostType.Screened"></app-sub-cost-display>
         </td>
-        <td class="padded-td" *ngIf="costItem.comments">
+        <td class="padded" *ngIf="costItem.comments">
           {{costItem.comments.length}} {{costItem.comments.length > 1 ? 'comments' : 'comment'}}
           <button type="button" (click)="toggleMessages(costItem.id)">Toggle messages</button>
         </td>
-        <td class="padded-td" *ngIf="!costItem.comments">No comments
+        <td class="padded" *ngIf="!costItem.comments">No comments
           <button type="button" (click)="toggleMessages(costItem.id)">Toggle messages</button>
         </td>
       </tr>
@@ -42,21 +42,21 @@
 
 
     <tr>
-      <td class="total-row total-label padded-td">Total</td>
-      <td class="total-row padded-td"></td>
-      <td class="total-row padded-td" *ngIf="getTotalCostOfType(subCostType.Quoted) as quotedTotal">
+      <td class="total-row total-label padded">Total</td>
+      <td class="total-row padded"></td>
+      <td class="total-row padded" *ngIf="getTotalCostOfType(subCostType.Quoted) as quotedTotal">
         <app-sub-cost-display [baseCurrencyLabel]="baseCurrency"
                               [baseCurrencyValue]="quotedTotal"
                               [selectedCurrencyLabel]="selectedCurrency"
                               [selectedCurrencyValue]="quotedTotal * rateFromBaseToSelectedCurrency"></app-sub-cost-display>
       </td>
-      <td class="total-row padded-td" *ngIf="getTotalCostOfType(subCostType.Screened) as screenedTotal">
+      <td class="total-row padded" *ngIf="getTotalCostOfType(subCostType.Screened) as screenedTotal">
         <app-sub-cost-display [baseCurrencyLabel]="baseCurrency"
                               [baseCurrencyValue]="screenedTotal"
                               [selectedCurrencyLabel]="selectedCurrency"
                               [selectedCurrencyValue]="screenedTotal * rateFromBaseToSelectedCurrency"></app-sub-cost-display>
       </td>
-      <td class="total-row padded-td"></td>
+      <td class="total-row padded"></td>
     </tr>
   </table>
 </div>

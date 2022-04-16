@@ -20,8 +20,17 @@ th {
   padding: 12px;
 }
 
-.padded-td {
+th.right-align {
+  text-align: right;
+}
+
+td.padded {
   padding: 12px;
+}
+
+td.label-value {
+  font-weight: bold;
+  color: grey;
 }
 
 .total-row {
