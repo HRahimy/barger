@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ICostItemComment} from '../../interfaces/cost-item.interface';
+import {CostItemCommentType, ICostItemComment} from '../../interfaces/cost-item.interface';
 
 @Component({
   selector: 'app-comment-controls',
@@ -7,7 +7,7 @@ import {ICostItemComment} from '../../interfaces/cost-item.interface';
   styleUrls: ['./comment-controls.component.css']
 })
 export class CommentControlsComponent implements OnInit {
-
+  commentTypes = CostItemCommentType;
   @Input()
   get comments(): ICostItemComment[] {
     throw new Error('Attribute "comments" is required');

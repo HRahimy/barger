@@ -22,6 +22,10 @@
   justify-content: center;
 }
 
+.chip.external {
+  background-color: #153c4f;
+}
+
 .chip-content{
   cursor: inherit;
   display: flex;
@@ -31,14 +35,23 @@
   padding-block: 2px;
 }
 
+.chip-content.external {
+  color: white;
+}
+
 table {
   /*width: 50%;*/
-  table-layout: fixed;
+  /*table-layout: fixed;*/
 }
 
 td {
   text-align: start;
-  padding-right: 12px;
+  padding-right: 32px;
+}
+
+td.comment {
+  font-weight: 500;
+  opacity: 0.7;
 }
 
 td.end {

@@ -4,13 +4,13 @@
       <table>
         <tr>
           <td>
-            <div class="chip">
-              <div class="chip-content">
+            <div [class]="comment.type === commentTypes.External ? 'chip external' : 'chip'">
+              <div [class]="comment.type === commentTypes.External ? 'chip-content external' : 'chip-content'">
                 {{comment.type}}
               </div>
             </div>
           </td>
-          <td>{{comment.comment}}</td>
+          <td class="comment">{{comment.comment}}</td>
         </tr>
       </table>
       <table>
