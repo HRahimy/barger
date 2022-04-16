@@ -1,6 +1,7 @@
 .controls-container {
-  background-color: rgba(47, 133, 171, .3);
+  background-color: rgba(47, 133, 171, 0.15);
   padding-inline: 12px;
+  padding-bottom: 18px;
 }
 
 .chip{
@@ -55,4 +56,10 @@ td.end {
 .comment-controls-container {
   display: flex;
   align-items: center;
+}
+
+.comment-form-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }

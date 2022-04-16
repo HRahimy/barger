@@ -33,8 +33,7 @@ select {
   border-radius: 4px;
   height: 32px;
   font-weight: 600;
-  font-size: 14px;
-  width: 100%;
+  width: fit-content;
   padding-right: 68px;
   padding-left: 12px;
 }
@@ -44,4 +43,37 @@ select:disabled {
   border: 2px solid grey;
   color: grey;
   opacity: 1;
+}
+
+input {
+  border-width: 2px;
+  border-radius: 4px;
+  height: 28px;
+  font-weight: 600;
+  padding-inline: 12px;
+  padding-block: 0;
+  width: 100%;
+  margin: auto;
+}
+
+input:disabled {
+  background-color: white;
+  border: 2px solid grey;
+  opacity: 0.7;
+}
+
+button {
+  border-radius: 4px;
+  border-spacing: 0;
+  border: 0 transparent;
+  height: 28px;
+  color: white;
+  background-color: #2F85AB;
+  font-weight: 600;
+  padding-inline: 12px;
+  padding-block: 0;
+}
+
+button:disabled {
+  opacity: 0.7;
 }
