@@ -21,7 +21,8 @@
           <app-sub-cost-display [baseCurrencyLabel]="baseCurrency"
                                 [baseCurrencyValue]="screenedSubCost.amount"
                                 [selectedCurrencyLabel]="selectedCurrency"
-                                [selectedCurrencyValue]="screenedSubCost.amount * rateFromBaseToSelectedCurrency"></app-sub-cost-display>
+                                [selectedCurrencyValue]="screenedSubCost.amount * rateFromBaseToSelectedCurrency"
+                                [subCostType]="subCostType.Screened"></app-sub-cost-display>
         </td>
         <td class="padded-td" *ngIf="costItem.comments">
           {{costItem.comments.length}} {{costItem.comments.length > 1 ? 'comments' : 'comment'}}

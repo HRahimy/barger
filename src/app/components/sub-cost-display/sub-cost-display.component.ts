@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {CostItemSubCostType} from '../../interfaces/cost-item.interface';
 
 @Component({
   selector: 'app-sub-cost-display',
@@ -6,6 +7,9 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./sub-cost-display.component.css']
 })
 export class SubCostDisplayComponent implements OnInit {
+  subCostTypes = CostItemSubCostType;
+  @Input() subCostType: CostItemSubCostType = CostItemSubCostType.Quoted;
+
   @Input()
   get baseCurrencyLabel(): string {
     throw new Error('Attribute "baseCurrencyLabel" is required');

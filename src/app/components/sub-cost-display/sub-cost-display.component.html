@@ -1,6 +1,21 @@
-<div class="value-display">
-  {{selectedCurrencyLabel}} {{selectedCurrencyValue | number: '1.2-2'}}
-</div>
-<div class="value-display">
-  {{baseCurrencyLabel}} {{baseCurrencyValue | number: '1.2-2'}}
-</div>
+<ng-container *ngIf="subCostType === subCostTypes.Quoted">
+  <div class="value-display quoted">
+    {{selectedCurrencyLabel}}&nbsp;
+    <span style="color: black; font-size: 16px;">{{selectedCurrencyValue | number: '1.2-2'}}</span>
+
+  </div>
+  <div class="value-display quoted">
+    {{baseCurrencyLabel}}
+    {{baseCurrencyValue | number: '1.2-2'}}
+  </div>
+</ng-container>
+
+<ng-container *ngIf="subCostType === subCostTypes.Screened">
+  <div class="input-box">
+    <span class="prefix">{{selectedCurrencyLabel}}</span>
+    <input disabled [value]="selectedCurrencyValue | number: '1.2-2'">
+  </div>
+  <div class="value-display">
+    {{baseCurrencyLabel}} {{baseCurrencyValue | number: '1.2-2'}}
+  </div>
+</ng-container>

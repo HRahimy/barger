@@ -1,6 +1,57 @@
 .value-display {
   display: flex;
   align-items: center;
-  padding: 0;
-  margin: 0;
+  justify-content: right;
+  padding-top: 3px;
+  font-weight: bold;
+  color: grey;
+  font-size: 13px;
+}
+
+.value-display.quoted {
+  padding-block: 5px;
+}
+
+
+/* Adapted from solution for input with prefix from:
+   https://www.30secondsofcode.org/css/s/input-with-prefix
+*/
+.input-box {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  margin: auto;
+  border: 2px solid grey;
+  border-radius: 2px;
+  padding-left: 0.5rem;
+  overflow: hidden;
+}
+
+.input-box .prefix {
+  font-weight: 500;
+  color: grey;
+}
+
+input {
+  height: 0;
+  text-align: right;
+  vertical-align: bottom;
+  color: black;
+  font-size: 15px;
+}
+
+input:disabled {
+  opacity: 1;
+}
+
+.input-box input {
+  flex-grow: 1;
+  background: #fff;
+  border: none;
+  outline: none;
+  padding: 0.5rem;
+}
+
+.input-box:focus-within {
+  border-color: #777;
 }
