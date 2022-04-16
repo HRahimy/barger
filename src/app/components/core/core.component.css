@@ -1,4 +1,18 @@
 .currency-controls {
   display: flex;
   align-items: center;
+  gap: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+h3 {
+  color: #24627c;
+}
+
+.container {
+  margin-inline: 32px;
 }

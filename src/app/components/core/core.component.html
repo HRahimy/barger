@@ -1,14 +1,21 @@
-<div class="currency-controls">
-  <app-currency-dropdown [options]="currencyOptions"
-                         [initialValue]="daCurrency.currency"
-                         (currencySelected)="updateSelectedCurrency($event)"></app-currency-dropdown>
-  <app-base-to-current-display [baseCurrency]="baseCurrency"
-                               [selectedCurrency]="daCurrency.currency"></app-base-to-current-display>
+<div class="container">
+  <div class="header">
+    <h3>COSTS</h3>
+    <div class="currency-controls">
+      <app-currency-dropdown [options]="currencyOptions"
+                             [initialValue]="daCurrency.currency"
+                             (currencySelected)="updateSelectedCurrency($event)"></app-currency-dropdown>
+      <app-base-to-current-display [baseCurrency]="baseCurrency"
+                                   [selectedCurrency]="daCurrency.currency"></app-base-to-current-display>
+    </div>
+  </div>
+
+
+  <div>
+    <app-cost-table *ngFor="let itemCost of costs" [cost]="itemCost"
+                    [selectedCurrency]="daCurrency.currency"
+                    [baseCurrency]="baseCurrency.currency"
+                    [rateFromBaseToSelectedCurrency]="rateFromBaseToSelectedCurrency"></app-cost-table>
+  </div>
 </div>
 
-<div>
-  <app-cost-table *ngFor="let itemCost of costs" [cost]="itemCost"
-                  [selectedCurrency]="daCurrency.currency"
-                  [baseCurrency]="baseCurrency.currency"
-                  [rateFromBaseToSelectedCurrency]="rateFromBaseToSelectedCurrency"></app-cost-table>
-</div>
