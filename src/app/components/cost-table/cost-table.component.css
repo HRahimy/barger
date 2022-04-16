@@ -41,3 +41,13 @@ td.label-value {
   font-weight: bold;
 }
 
+button {
+  background-color: rgba(234, 234, 234, 0.24);
+  color: black;
+  cursor: pointer;
+}
+
+img {
+  width: 15px;
+  height: 15px;
+}

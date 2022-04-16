@@ -10,17 +10,21 @@
               </div>
             </div>
           </td>
-          <td class="comment">{{comment.comment}}</td>
+          <td class="content-light">{{comment.comment}}</td>
         </tr>
       </table>
       <table>
         <tr>
           <td class="end"><h4>{{comment.author}}</h4></td>
-          <td class="end">{{comment.date | date: "dd MMMM yyyy HH:mm"}}</td>
+          <td class="end content-light">{{comment.date | date: "dd MMMM yyyy HH:mm"}}</td>
           <td class="end">
             <div class="comment-controls-container">
-              <button type="button" disabled>E</button>
-              <button type="button" disabled>D</button>
+              <button class="icon-button" type="button" disabled>
+                <img src="assets/ic_edit_24px.svg" alt="none">
+              </button>
+              <button class="icon-button" type="button" disabled>
+                <img src="assets/ic_delete_24px.svg" alt="none">
+              </button>
             </div>
           </td>
         </tr>

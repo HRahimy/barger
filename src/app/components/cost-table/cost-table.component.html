@@ -25,11 +25,16 @@
                                 [subCostType]="subCostType.Screened"></app-sub-cost-display>
         </td>
         <td class="padded" *ngIf="costItem.comments">
-          {{costItem.comments.length}} {{costItem.comments.length > 1 ? 'comments' : 'comment'}}
-          <button type="button" (click)="toggleMessages(costItem.id)">Toggle messages</button>
+          <button type="button" (click)="toggleMessages(costItem.id)">
+            <img src="assets/ic_message_24px.svg" alt="none">
+            {{costItem.comments.length}}
+          </button>
         </td>
-        <td class="padded" *ngIf="!costItem.comments">No comments
-          <button type="button" (click)="toggleMessages(costItem.id)">Toggle messages</button>
+        <td class="padded" *ngIf="!costItem.comments">
+          <button type="button" (click)="toggleMessages(costItem.id)">
+            <img src="assets/ic_message_24px.svg" alt="none">
+            0
+          </button>
         </td>
       </tr>
 
