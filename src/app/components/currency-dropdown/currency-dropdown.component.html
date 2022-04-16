@@ -2,7 +2,9 @@
   <span>
   <h4>{{label}}</h4>
   </span>
-  <select class="my-select" (change)="selectCurrency($event)">
-    <option *ngFor="let option of options" [value]="option" [selected]="currentValue === option">{{option}}</option>
-  </select>
+  <div class="cselect">
+    <select (change)="selectCurrency($event)">
+      <option *ngFor="let option of options" [value]="option" [selected]="currentValue === option">{{option}}</option>
+    </select>
+  </div>
 </div>

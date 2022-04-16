@@ -1,5 +1,6 @@
 .controls-container {
   background-color: rgba(47, 133, 171, .3);
+  padding-inline: 12px;
 }
 
 .chip{
@@ -36,11 +37,13 @@ table {
 
 td {
   text-align: start;
-  padding-inline: 12px;
+  padding-right: 12px;
 }
 
 td.end {
   text-align: end;
+  padding-left: 12px;
+  padding-right: 0;
 }
 
 .comment-container {

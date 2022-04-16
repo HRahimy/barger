@@ -1,1 +1,47 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+.spacer {
+  flex: 1;
+}
+
+/* Solution for customizing dropdown icon for select components:
+    https://code-boxx.com/dropdown-arrow-css/
+*/
+.cselect select {
+  appearance: none;
+}
+
+.cselect {
+  position: relative;
+}
+
+.cselect::after {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  content: url('http://localhost:4200/assets/chevron-down.svg');
+}
+
+.cselect.disabled::after {
+  content: url('http://localhost:4200/assets/chevron-down-disabled.svg');
+}
+
+
+select {
+  border-width: 2px;
+  border-radius: 4px;
+  height: 32px;
+  font-weight: 600;
+  font-size: 14px;
+  width: 100%;
+  padding-right: 68px;
+  padding-left: 12px;
+}
+
+select:disabled {
+  background-color: white;
+  border: 2px solid grey;
+  color: grey;
+  opacity: 1;
+}

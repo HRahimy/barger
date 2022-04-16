@@ -2,10 +2,3 @@
   display: flex;
   align-items: center;
 }
-
-.my-select {
-  border-width: 2px;
-  border-radius: 4px;
-  height: 26px;
-  font-weight: 600;
-}
