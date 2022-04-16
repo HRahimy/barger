@@ -26,13 +26,13 @@
         </td>
         <td class="padded" *ngIf="costItem.comments">
           <button type="button" (click)="toggleMessages(costItem.id)">
-            <img src="assets/ic_message_24px.svg" alt="none">
+            <img src="assets/ic_message_24px.svg" alt="Toggle comments">
             {{costItem.comments.length}}
           </button>
         </td>
         <td class="padded" *ngIf="!costItem.comments">
           <button type="button" (click)="toggleMessages(costItem.id)">
-            <img src="assets/ic_message_24px.svg" alt="none">
+            <img src="assets/ic_message_24px.svg" alt="Toggle comments">
             0
           </button>
         </td>
